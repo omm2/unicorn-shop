@@ -1,0 +1,57 @@
+{
+  "extends": [
+    "airbnb-typescript",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "react/state-in-constructor": ["off"]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "rules": {
+        "no-undef": "off",
+        "react/prop-types": "off",
+        "import/prefer-default-export": "off"
+      }
+    },
+    {
+      "files": ["**/testUtils/**/*.ts", "**/testUtils/**/*.tsx"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": ["**/testUtils/**/*.ts", "**/testUtils/**/*.tsx"]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["**/internals/**/*.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    },
+    {
+      "files": ["src/Auth.tsx"],
+      "rules": {
+        "react/jsx-props-no-spreading": "off"
+      }
+    },
+    {
+      "files": ["src/domain/**/*.ts"],
+      "rules": {
+        "import/no-cycle": "off"
+      }
+    }
+  ]
+}
