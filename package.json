@@ -67,7 +67,9 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
+    "antd": "^4.11.2",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "react-jss": "^10.5.1"
   }
 }
