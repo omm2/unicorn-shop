@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import {
+  useHistory,
+  useLocation
+} from 'react-router-dom';
 import { login, loginSelector } from './loginSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import Form from '../../components/Form'
@@ -7,15 +11,29 @@ import Input from '../../components/Input'
 import InputPassword from '../../components/InputPassword'
 import Button from '../../components/Button'
 
+interface LocationState {
+  from: {
+    pathname: string;
+  };
+}
+
 const Login: React.FC = () => {
   const dispatch = useDispatch()
   const { loading, error, token } = useSelector(loginSelector)
+  const history = useHistory();
+  const location = useLocation<LocationState>();
 
   console.log(loading, error, token)
+  useEffect(() => {
+    if (token) {
+      const { from } = location.state || { from: { pathname: "/" } };
+      history.replace(from);
+    }
+  })
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    dispatch(login(values))
+    dispatch(login(values));
   };
 
   const onFinishFailed = (errorInfo: any) => {

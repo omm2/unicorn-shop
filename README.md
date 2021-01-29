@@ -166,7 +166,9 @@ _Example:_
 
 ### Technologies involved / approach
 
-_List here the technologies you've chosen and why_
+Ant Design
+Redux Toolkit
+React Router
 
 ### Further improvements
 
