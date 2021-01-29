@@ -1,7 +1,7 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss'
 import { Layout, Header, Footer, Content } from './components/Layout';
-import Login from './Login';
+import Login from './features/login/Login';
 
 const useStyles = createUseStyles({
   layout: {
