@@ -17,7 +17,7 @@ import Products from './features/products/Products';
 const useStyles = createUseStyles({
   layout: {
     display: 'flex',
-    height: '100vh',
+    minHeight: '100vh',
     margin: 0
   },
   content: {

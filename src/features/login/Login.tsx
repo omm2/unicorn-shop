@@ -19,11 +19,11 @@ interface LocationState {
 
 const Login: React.FC = () => {
   const dispatch = useDispatch()
+  // TODO add loading, error UI
   const { loading, error, token } = useSelector(loginSelector)
   const history = useHistory();
   const location = useLocation<LocationState>();
 
-  console.log(loading, error, token)
   useEffect(() => {
     if (token) {
       const { from } = location.state || { from: { pathname: "/" } };
@@ -32,7 +32,6 @@ const Login: React.FC = () => {
   })
 
   const onFinish = (values: any) => {
-    console.log('Success:', values);
     dispatch(login(values));
   };
 

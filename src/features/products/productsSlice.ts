@@ -2,8 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { AppThunk } from '../../app/store'
 
+export interface Product {
+  description: string;
+  guid: string;
+  name: string;
+  picture: string;
+  price: number;
+}
+
 export interface ProductsState {
-  data: Array<object>;
+  data: Array<Product>;
   loading: boolean;
   error: boolean;
 }
@@ -28,7 +36,7 @@ export const productsSlice = createSlice({
       state.error = payload
     },
 
-    setData: (state, { payload }: PayloadAction<Array<object>>) => {
+    setData: (state, { payload }: PayloadAction<Array<Product>>) => {
       state.data = payload
     },
   },
@@ -47,7 +55,6 @@ export const fetchProducts = (token: string): AppThunk => {
       )
 
       dispatch(setLoading(false))
-      console.log(res.data)
       dispatch(setData(res.data))
     } catch (error) {
       dispatch(setErrors(true))
