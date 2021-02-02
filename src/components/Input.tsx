@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input as InputAnt} from 'antd';
+import { Input as InputAnt } from 'antd';
 import { InputProps } from 'antd/lib/input';
 
 const Input: React.FC<InputProps> = (props) => {

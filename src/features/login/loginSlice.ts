@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { AppThunk } from '../../app/store'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { AppThunk } from '../../app/store';
 
 export interface UserData {
   user: string;
@@ -16,8 +16,8 @@ export interface LoginState {
 const initialState: LoginState = {
   token: '',
   loading: false,
-  error: false,
-}
+  error: false
+};
 
 export const loginSlice = createSlice({
   name: 'login',
@@ -26,17 +26,17 @@ export const loginSlice = createSlice({
   /* eslint-disable no-param-reassign */
   reducers: {
     setLoading: (state, { payload }: PayloadAction<boolean>) => {
-      state.loading = payload
+      state.loading = payload;
     },
 
     setErrors: (state, { payload }: PayloadAction<boolean>) => {
-      state.error = payload
+      state.error = payload;
     },
 
     setToken: (state, { payload }: PayloadAction<string>) => {
-      state.token = payload
-    },
-  },
+      state.token = payload;
+    }
+  }
   /* eslint-enable no-param-reassign */
 });
 
@@ -44,23 +44,23 @@ export const { setLoading, setErrors, setToken } = loginSlice.actions;
 
 export const login = (user: UserData): AppThunk => {
   return async dispatch => {
-    dispatch(setLoading(true))
+    dispatch(setLoading(true));
     try {
-      const baseURL: string = 'https://glc4swy1fd.execute-api.eu-west-1.amazonaws.com/choco'
+      const baseURL: string = 'https://glc4swy1fd.execute-api.eu-west-1.amazonaws.com/choco';
       const res = await axios.post(
         `${baseURL}/login`, user
-      )
+      );
 
-      dispatch(setLoading(false))
-      dispatch(setToken(res.data.token))
+      dispatch(setLoading(false));
+      dispatch(setToken(res.data.token));
     } catch (error) {
-      dispatch(setErrors(true))
-      dispatch(setLoading(false))
+      dispatch(setErrors(true));
+      dispatch(setLoading(false));
     }
-  }
-}
+  };
+};
 
 export default loginSlice.reducer;
 
 export const loginSelector = (state: { login: LoginState }) =>
-  state.login
+  state.login;

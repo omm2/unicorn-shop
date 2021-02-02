@@ -20,28 +20,28 @@ interface ProductTableItem {
 }
 
 const ProductCard: React.FC<OrderModalProps> = (props: OrderModalProps) => {
-  const { products, isModalVisible, handleModalOk, handleModalCancel } = props
+  const { products, isModalVisible, handleModalOk, handleModalCancel } = props;
 
   const columns: ColumnsType<ProductTableItem> = [
     {
       title: 'Name',
       dataIndex: 'name',
-      key: 'name',
+      key: 'name'
     },
     {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
-      render: (price: number) => <Price price={price} />,
-    },
+      render: (price: number) => <Price price={price} />
+    }
   ];
-  
+
   const data: ProductTableItem[] = products.map((product) => ({
     key: product.guid,
     name: product.name,
     price: product.price
-  }))
-  
+  }));
+
   return (
     <Modal title="Are you sure you want create an order?" visible={isModalVisible} onOk={handleModalOk} onCancel={handleModalCancel}>
       <Table<ProductTableItem> columns={columns} dataSource={data} pagination={false} />

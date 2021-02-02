@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { useSelector } from 'react-redux';
 // TODO create a component wrapper arounf Table
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
@@ -12,9 +12,9 @@ import OrderDate from '../../components/OrderDate';
 const useStyles = createUseStyles({
   wrapper: {
     display: 'flex',
-    flexWrap: 'wrap',
-  },
-})
+    flexWrap: 'wrap'
+  }
+});
 
 interface OrderTableItem {
   id: number;
@@ -22,39 +22,39 @@ interface OrderTableItem {
 }
 
 const Orders: React.FC = () => {
-  const classes = useStyles()
-  const { error, data } = useSelector(ordersSelector)
+  const classes = useStyles();
+  const { error, data } = useSelector(ordersSelector);
 
   const errorAlert = error && (
     <Alert message="Sorry, something went wrong." type="error" />
-  )
+  );
 
   const columns: ColumnsType<OrderTableItem> = [
     {
       title: 'Id',
       dataIndex: 'id',
-      key: 'id',
+      key: 'id'
     },
     {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
-      render: (date: number) => <OrderDate date={date} />,
+      render: (date: number) => <OrderDate date={date} />
     },
     {
       title: 'Action',
       key: 'action',
       render: (text, record) => (
         <Link to={`/order/${record.id}`}>Details</Link>
-      ),
-    },  
+      )
+    }
   ];
-  
+
   const tableData: OrderTableItem[] = data.map((order)=> ({
     id: order.id,
     key: order.id,
-    date: order.date,
-  }))
+    date: order.date
+  }));
 
   return (
     <div>

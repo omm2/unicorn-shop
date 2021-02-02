@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { createUseStyles } from 'react-jss'
-import { Redirect } from 'react-router-dom'
-import { fetchProducts, productsSelector } from './productsSlice'
-import { loginSelector } from '../login/loginSlice'
-import { createOrder } from '../orders/ordersSlice'
-import ProductCard from './ProductCard'
-import OrderModal from './OrderModal'
-import Button from '../../components/Button'
-import Spin from '../../components/Spin'
-import Alert from '../../components/Alert'
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { createUseStyles } from 'react-jss';
+import { Redirect } from 'react-router-dom';
+import { fetchProducts, productsSelector } from './productsSlice';
+import { loginSelector } from '../login/loginSlice';
+import { createOrder } from '../orders/ordersSlice';
+import ProductCard from './ProductCard';
+import OrderModal from './OrderModal';
+import Button from '../../components/Button';
+import Spin from '../../components/Spin';
+import Alert from '../../components/Alert';
 
 const useStyles = createUseStyles({
   wrapper: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   spinWrapper: {
     textAlign: 'center',
-    margin: '20px 0',
+    margin: '20px 0'
   },
   productsHeader: {
     color: '#4dabf7',
@@ -26,34 +26,34 @@ const useStyles = createUseStyles({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     margin: '1vmin 0',
-    minHeight: '35px',
+    minHeight: '35px'
   },
   note: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: '3vmin',
+    marginRight: '3vmin'
   },
   buttonsWrapper: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   button: {
-    marginRight: '1vmin',
+    marginRight: '1vmin'
   }
-})
+});
 
 const Products: React.FC = () => {
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const { loading, error, data } = useSelector(productsSelector)
-  const { token } = useSelector(loginSelector)
-  const [selectedIds, setSelectedIds] = useState<Array<string>>([])
-  const [orderCreated, setOrderCreated] = useState<boolean>(false)
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const { loading, error, data } = useSelector(productsSelector);
+  const { token } = useSelector(loginSelector);
+  const [selectedIds, setSelectedIds] = useState<Array<string>>([]);
+  const [orderCreated, setOrderCreated] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchProducts(token))
-  }, [dispatch])
+    dispatch(fetchProducts(token));
+  }, [dispatch]);
 
 
   function handleClick(id: string) {
@@ -68,8 +68,8 @@ const Products: React.FC = () => {
 
   function getSelectedProducts() {
     return data.filter(item => {
-      return selectedIds.includes(item.guid)
-    })
+      return selectedIds.includes(item.guid);
+    });
   }
 
   function handleCreateOrder() {
@@ -77,13 +77,13 @@ const Products: React.FC = () => {
   }
 
   function handleDeselectAll() {
-    setSelectedIds([])
+    setSelectedIds([]);
   }
 
   function handleModalOk() {
     dispatch(createOrder(getSelectedProducts()));
-    setSelectedIds([])
-    setOrderCreated(true)
+    setSelectedIds([]);
+    setOrderCreated(true);
   }
 
   function handleModalCancel() {
@@ -96,17 +96,17 @@ const Products: React.FC = () => {
       handleClick={handleClick}
       product={product}
       selected={selectedIds.includes(product.guid)}
-    />
-  })
+    />;
+  });
 
   const spin = loading && (
     <div className={classes.spinWrapper}>
       <Spin size="large" />
     </div>
-  )
+  );
   const errorAlert = error && (
     <Alert message="Sorry, something went wrong." type="error" />
-  )
+  );
   const productsHeader = (
     <div className={classes.productsHeader}>
       <div className={classes.note}>Items Selected: <span>{selectedIds.length}</span></div>
@@ -122,11 +122,11 @@ const Products: React.FC = () => {
           />
         </div>
       }
-    </div> 
-  )
+    </div>
+  );
 
   if (orderCreated) {
-    return <Redirect to='/orders' />
+    return <Redirect to='/orders' />;
   }
 
   return (

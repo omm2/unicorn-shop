@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { AppThunk } from '../../app/store'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { AppThunk } from '../../app/store';
 
 export interface Product {
   description: string;
@@ -19,8 +19,8 @@ export interface ProductsState {
 const initialState: ProductsState = {
   data: [],
   loading: false,
-  error: false,
-}
+  error: false
+};
 
 export const productsSlice = createSlice({
   name: 'products',
@@ -29,17 +29,17 @@ export const productsSlice = createSlice({
   /* eslint-disable no-param-reassign */
   reducers: {
     setLoading: (state, { payload }: PayloadAction<boolean>) => {
-      state.loading = payload
+      state.loading = payload;
     },
 
     setErrors: (state, { payload }: PayloadAction<boolean>) => {
-      state.error = payload
+      state.error = payload;
     },
 
     setData: (state, { payload }: PayloadAction<Array<Product>>) => {
-      state.data = payload
-    },
-  },
+      state.data = payload;
+    }
+  }
   /* eslint-enable no-param-reassign */
 });
 
@@ -47,23 +47,23 @@ export const { setLoading, setErrors, setData } = productsSlice.actions;
 
 export const fetchProducts = (token: string): AppThunk => {
   return async dispatch => {
-    dispatch(setLoading(true))
+    dispatch(setLoading(true));
     try {
-      const baseURL: string = 'https://glc4swy1fd.execute-api.eu-west-1.amazonaws.com/choco'
+      const baseURL: string = 'https://glc4swy1fd.execute-api.eu-west-1.amazonaws.com/choco';
       const res = await axios.get(
         `${baseURL}/products?token=${token}`
-      )
+      );
 
-      dispatch(setLoading(false))
-      dispatch(setData(res.data))
+      dispatch(setLoading(false));
+      dispatch(setData(res.data));
     } catch (error) {
-      dispatch(setErrors(true))
-      dispatch(setLoading(false))
+      dispatch(setErrors(true));
+      dispatch(setLoading(false));
     }
-  }
-}
+  };
+};
 
 export default productsSlice.reducer;
 
 export const productsSelector = (state: { products: ProductsState }) =>
-  state.products
+  state.products;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card as CardAnt} from 'antd';
+import { Card as CardAnt } from 'antd';
 import { CardProps } from 'antd/lib/card';
 
 export const { Meta } = CardAnt;

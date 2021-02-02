@@ -1,13 +1,13 @@
-import React from 'react'
-import { createUseStyles } from 'react-jss'
+import React from 'react';
+import { createUseStyles } from 'react-jss';
 import { Product } from './productsSlice';
-import Button from '../../components/Button'
-import Card from '../../components/Card'
-import Price from '../../components/Price'
+import Button from '../../components/Button';
+import Card from '../../components/Card';
+import Price from '../../components/Price';
 
 const useStyles = createUseStyles({
   card: {
-    margin: '1vmin 1vmin 1vmin 0',
+    margin: '1vmin 1vmin 1vmin 0'
   },
   cardSelected: {
     backgroundColor: '#f0f0f0'
@@ -16,13 +16,13 @@ const useStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '100%',
+    height: '100%'
   },
   price: {
     fontSize: '20px',
-    fontWeight: '800',
+    fontWeight: '800'
   }
-})
+});
 
 type ProductCardProps = {
   key: string;
@@ -32,14 +32,14 @@ type ProductCardProps = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
-  const classes = useStyles()
-  const { product, selected } = props
-  const button = <Button type="primary" onClick={() => props.handleClick(product.guid)}>{ selected ? 'Unselect' : 'Select' }</Button>
+  const classes = useStyles();
+  const { product, selected } = props;
+  const button = <Button type="primary" onClick={() => props.handleClick(product.guid)}>{ selected ? 'Unselect' : 'Select' }</Button>;
   const title =
     <div className={classes.cardWrapper}>
       <div>{product.name}</div>
       <div className={classes.price}><Price price={product.price} /></div>
-    </div>
+    </div>;
   return (
     <Card
       className={`${classes.card} ${selected && classes.cardSelected}`}
@@ -50,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
     >
       {product.description}
     </Card>
-  )
+  );
 };
 
 export default ProductCard;

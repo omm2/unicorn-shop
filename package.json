@@ -8,7 +8,7 @@
     "start:preview": "cross-env NODE_ENV=development webpack-dev-server --config ./internals/webpack/webpack.dev.preview.ts",
     "build": "cross-env NODE_ENV=production webpack --config ./internals/webpack/webpack.config.ts",
     "prettier": "prettier --write src/**/*.{ts,tsx}",
-    "lint": "yarn eslint --ext src/**/*.{ts,tsx}",
+    "lint": "yarn eslint src/** --ext .tsx,.ts,.js",
     "test": "jest",
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage"

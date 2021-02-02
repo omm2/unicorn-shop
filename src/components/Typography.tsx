@@ -3,8 +3,8 @@ import { Typography } from 'antd';
 import { TitleProps } from 'antd/lib/typography/Title';
 import { TextProps } from 'antd/lib/typography/Text';
 
-const TitleAnt = Typography.Title 
-const TextAnt = Typography.Text 
+const TitleAnt = Typography.Title;
+const TextAnt = Typography.Text;
 
 const Title: React.FC<TitleProps> = (props) => {
   return (

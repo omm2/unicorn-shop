@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal as ModalAnt} from 'antd';
+import { Modal as ModalAnt } from 'antd';
 import { ModalProps } from 'antd/lib/modal';
 
 const Modal: React.FC<ModalProps> = (props) => {

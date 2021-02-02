@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppThunk } from '../../app/store'
-import { Product } from '../products/productsSlice'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppThunk } from '../../app/store';
+import { Product } from '../products/productsSlice';
 
 export interface Order {
   id: number;
@@ -15,8 +15,8 @@ export interface OrdersState {
 
 const initialState: OrdersState = {
   data: [],
-  error: false,
-}
+  error: false
+};
 
 export const ordersSlice = createSlice({
   name: 'orders',
@@ -25,12 +25,12 @@ export const ordersSlice = createSlice({
   /* eslint-disable no-param-reassign */
   reducers: {
     addOrder: (state, { payload }: PayloadAction<Order>) => {
-      state.data.push(payload)
+      state.data.push(payload);
     },
     setErrors: (state, { payload }: PayloadAction<boolean>) => {
-      state.error = payload
-    },
-  },
+      state.error = payload;
+    }
+  }
   /* eslint-enable no-param-reassign */
 });
 
@@ -46,15 +46,15 @@ export const createOrder = (products: Array<Product>): AppThunk => {
         // usually I would put only product ids into local storage
         // but here we need product data to display on order page
         products
-      }
-      dispatch(addOrder(order))
+      };
+      dispatch(addOrder(order));
     } catch (error) {
-      dispatch(setErrors(true))
+      dispatch(setErrors(true));
     }
-  }
-}
+  };
+};
 
 export default ordersSlice.reducer;
 
 export const ordersSelector = (state: { orders: OrdersState }) =>
-  state.orders
+  state.orders;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout as LayoutAnt} from 'antd';
+import { Layout as LayoutAnt } from 'antd';
 import { LayoutProps } from 'antd/lib/layout';
 import { BasicProps } from 'antd/lib/layout/layout';
 

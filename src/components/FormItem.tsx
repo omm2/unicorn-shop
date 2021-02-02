@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form as FormAnt} from 'antd';
+import { Form as FormAnt } from 'antd';
 import { FormItemProps } from 'antd/lib/form/FormItem';
 
 const FormItem: React.FC<FormItemProps> = (props) => {

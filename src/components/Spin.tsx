@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spin as SpinAnt} from 'antd';
+import { Spin as SpinAnt } from 'antd';
 import { SpinProps } from 'antd/lib/spin';
 
 const Spin: React.FC<SpinProps> = (props) => {

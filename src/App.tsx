@@ -7,10 +7,10 @@ import {
   Redirect,
   RouteProps
 } from 'react-router-dom';
-import { useSelector } from 'react-redux'
-import { createUseStyles } from 'react-jss'
+import { useSelector } from 'react-redux';
+import { createUseStyles } from 'react-jss';
 import { Layout, Header, Footer, Content } from './components/Layout';
-import { loginSelector } from './features/login/loginSlice'
+import { loginSelector } from './features/login/loginSlice';
 import Login from './features/login/Login';
 import Products from './features/products/Products';
 import Orders from './features/orders/Orders';
@@ -36,10 +36,10 @@ const useStyles = createUseStyles({
   headerIcon: {
     paddingRight: '1em'
   }
-})
+});
 
 const App: React.FC = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Router>
       <Layout className={classes.layout}>
@@ -69,7 +69,7 @@ const App: React.FC = () => {
 };
 
 const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
-  const { token } = useSelector(loginSelector)
+  const { token } = useSelector(loginSelector);
   return (
     <Route
       // eslint-disable-next-line react/jsx-props-no-spreading
@@ -80,7 +80,7 @@ const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: '/login',
               state: { from: location }
             }}
           />
@@ -88,6 +88,6 @@ const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
       }
     />
   );
-}
+};
 
 export default App;

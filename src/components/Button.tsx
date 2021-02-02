@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button as ButtonAnt} from 'antd';
+import { Button as ButtonAnt } from 'antd';
 import { ButtonProps } from 'antd/lib/button';
 
 const Button: React.FC<ButtonProps> = (props) => {

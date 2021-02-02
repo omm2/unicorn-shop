@@ -6,7 +6,7 @@ type PriceProps = {
 };
 
 const Price: React.FC<PriceProps> = (props: PriceProps) => {
-  const {price} = props
+  const { price } = props;
   return (
     <NumberFormat value={price} displayType='text' thousandSeparator prefix='€' />
   );
