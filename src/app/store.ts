@@ -14,18 +14,20 @@ import storage from 'redux-persist/lib/storage'
 
 import loginReducer, { LoginState } from '../features/login/loginSlice'
 import productsReducer, { ProductsState } from '../features/products/productsSlice'
+import ordersReducer, { OrdersState } from '../features/orders/ordersSlice'
 
 // the solution to make redux-toolkit and redux-persist work together
 // taken from here: https://github.com/reduxjs/redux-toolkit/issues/121
 const reducers = combineReducers({
   login: loginReducer,
-  products: productsReducer
+  products: productsReducer,
+  orders: ordersReducer,
 })
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['login']
+  whitelist: ['login', 'orders']
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)

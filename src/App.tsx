@@ -13,6 +13,7 @@ import { Layout, Header, Footer, Content } from './components/Layout';
 import { loginSelector } from './features/login/loginSlice'
 import Login from './features/login/Login';
 import Products from './features/products/Products';
+import Orders from './features/orders/Orders';
 
 const useStyles = createUseStyles({
   layout: {
@@ -46,12 +47,12 @@ const App: React.FC = () => {
         </Header>
         <Content className={classes.content}>
           <Switch>
-            { /* <Route path="/orders">
+            <Route path="/orders">
               <Orders/>
             </Route>
-            <Route path="/order">
-              <Order/>
-            </Route> */}
+            <Route path="/orders">
+              <Orders/>
+            </Route>
             <Route path="/login">
               <Login/>
             </Route>
