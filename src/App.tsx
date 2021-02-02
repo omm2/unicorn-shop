@@ -14,6 +14,7 @@ import { loginSelector } from './features/login/loginSlice'
 import Login from './features/login/Login';
 import Products from './features/products/Products';
 import Orders from './features/orders/Orders';
+import Order from './features/orders/Order';
 
 const useStyles = createUseStyles({
   layout: {
@@ -47,12 +48,12 @@ const App: React.FC = () => {
         </Header>
         <Content className={classes.content}>
           <Switch>
-            <Route path="/orders">
+            <PrivateRoute path="/orders">
               <Orders/>
-            </Route>
-            <Route path="/orders">
-              <Orders/>
-            </Route>
+            </PrivateRoute>
+            <PrivateRoute path="/order/:id">
+              <Order/>
+            </PrivateRoute>
             <Route path="/login">
               <Login/>
             </Route>

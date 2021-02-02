@@ -81,7 +81,7 @@ const Products: React.FC = () => {
   }
 
   function handleModalOk() {
-    dispatch(createOrder(selectedIds));
+    dispatch(createOrder(getSelectedProducts()));
     setSelectedIds([])
     setOrderCreated(true)
   }

@@ -7,10 +7,10 @@ type DateProps = {
 const OrderDate: React.FC<DateProps> = (props: DateProps) => {
   const { date } = props
   const orderDate = new Date(date) 
-  const dateObj = orderDate.toLocaleDateString('de-DE')
-  const timeObj = orderDate.toLocaleTimeString('de-DE')
+  const dateStr = orderDate.toLocaleDateString('de-DE')
+  const timeStr = orderDate.toLocaleTimeString('de-DE')
   return (
-    <span>{ `${dateObj} ${timeObj}` }</span>
+    <span>{ `${dateStr} ${timeStr}` }</span>
   );
 };
 
