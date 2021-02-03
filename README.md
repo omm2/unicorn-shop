@@ -154,12 +154,6 @@ You are expected to apply industry best practices and techniques such as:
 
 ### Getting Started
 
-_Tell us how to spin up your project_
-
-### Commands:
-
-_Example:_
-
 - `yarn start` spins up the project and watch for changes
 - `yarn test` run unit tests
 - `yarn build` build the `/dist` folder
@@ -169,7 +163,11 @@ _Example:_
 Ant Design
 Redux Toolkit
 React Router
+Redux Persist
 
 ### Further improvements
 
-_Any further improvement you think you could've done with more time (be honest)_
+- Add more tests (cover all components and Redux)
+- Add pagination for products
+- Add @ alias for paths
+- Add custom styles to Ant Design component wrappers
