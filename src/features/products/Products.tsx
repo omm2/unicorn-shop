@@ -11,6 +11,7 @@ import Button from '../../components/Button';
 import Spin from '../../components/Spin';
 import Alert from '../../components/Alert';
 import { Title } from '../../components/Typography';
+import jss from '../../jss';
 
 const useStyles = createUseStyles({
   wrapper: {
@@ -22,7 +23,7 @@ const useStyles = createUseStyles({
     margin: '20px 0'
   },
   productsHeader: {
-    color: '#4dabf7',
+    color: jss.colors.blue,
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

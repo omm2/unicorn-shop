@@ -2,9 +2,16 @@ import React from 'react';
 // TODO create a component wrapper arounf Table
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import { createUseStyles } from 'react-jss';
 import Modal from '../../components/Modal';
 import { Product } from './productsSlice';
 import Price from '../../components/Price';
+
+const useStyles = createUseStyles({
+  summery: {
+    fontWeight: '800'
+  }
+});
 
 type OrderModalProps = {
   products: Array<Product>;
@@ -20,7 +27,11 @@ interface ProductTableItem {
 }
 
 const ProductCard: React.FC<OrderModalProps> = (props: OrderModalProps) => {
+  const classes = useStyles();
   const { products, isModalVisible, handleModalOk, handleModalCancel } = props;
+  const total = products
+    .map(item => item.price)
+    .reduce((accumulator, value) => accumulator + value)
 
   const columns: ColumnsType<ProductTableItem> = [
     {
@@ -43,8 +54,21 @@ const ProductCard: React.FC<OrderModalProps> = (props: OrderModalProps) => {
   }));
 
   return (
-    <Modal title="Are you sure you want create an order?" visible={isModalVisible} onOk={handleModalOk} onCancel={handleModalCancel}>
-      <Table<ProductTableItem> columns={columns} dataSource={data} pagination={false} />
+    <Modal title="Are you sure you want to create an order?" visible={isModalVisible} onOk={handleModalOk} onCancel={handleModalCancel}>
+      <Table<ProductTableItem>
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+        bordered
+        showHeader={false}
+        summary={() => {
+          return (
+          <Table.Summary.Row className={classes.summery}>
+            <Table.Summary.Cell index={0}>Total</Table.Summary.Cell>
+            <Table.Summary.Cell index={1}><Price price={total} /></Table.Summary.Cell>
+          </Table.Summary.Row>
+        );}}
+      />
     </Modal>
   );
 };

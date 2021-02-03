@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 import { ordersSelector } from './ordersSlice';
 import Alert from '../../components/Alert';
 import OrderDate from '../../components/OrderDate';
+import { Title } from '../../components/Typography';
 
 const useStyles = createUseStyles({
   wrapper: {
-    display: 'flex',
-    flexWrap: 'wrap'
+    'maxWidth': 700
   }
 });
 
@@ -33,7 +33,8 @@ const Orders: React.FC = () => {
     {
       title: 'Id',
       dataIndex: 'id',
-      key: 'id'
+      key: 'id',
+      render: (id: number) => `#${id}`
     },
     {
       title: 'Date',
@@ -58,13 +59,17 @@ const Orders: React.FC = () => {
 
   return (
     <div>
+      <Title level={2}>Your Orders</Title>
       {errorAlert}
       {
         !!data.length &&
-        <div>
-          <div className={classes.wrapper}>
-            <Table<OrderTableItem> columns={columns} dataSource={tableData} pagination={false} />
-          </div>
+        <div className={classes.wrapper}>
+          <Table<OrderTableItem>
+            columns={columns}
+            dataSource={tableData}
+            pagination={false}
+            bordered
+          />
         </div>
       }
     </div>

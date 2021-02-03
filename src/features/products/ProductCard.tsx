@@ -4,13 +4,24 @@ import { Product } from './productsSlice';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
 import Price from '../../components/Price';
+import jss from '../../jss';
 
 const useStyles = createUseStyles({
   card: {
     margin: '1vmin 1vmin 1vmin 0'
   },
+  [`@media (min-width: ${jss.minWidthTablet}px)`]: {
+    card: {
+      flex: '0 1 calc(33% - 1vmin)'
+    }
+  },
+  [`@media (min-width: ${jss.minWidthDesktop}px)`]: {
+    card: {
+      flex: '0 1 calc(25% - 1vmin)'
+    }
+  },
   cardSelected: {
-    backgroundColor: '#f0f0f0'
+    backgroundColor: jss.colors.lightGrey
   },
   cardWrapper: {
     display: 'flex',

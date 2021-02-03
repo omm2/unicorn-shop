@@ -3,13 +3,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
   RouteProps
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createUseStyles } from 'react-jss';
-import { Layout, Header, Footer, Content } from './components/Layout';
+import { Layout, Footer, Content } from './components/Layout';
+import HeaderApp from './Header';
 import { loginSelector } from './features/login/loginSlice';
 import Login from './features/login/Login';
 import Products from './features/products/Products';
@@ -27,14 +27,8 @@ const useStyles = createUseStyles({
     padding: '24px',
     background: '#fff'
   },
-  header: {
-    color: '#fff'
-  },
   footer: {
     marginTop: 'auto'
-  },
-  headerIcon: {
-    paddingRight: '1em'
   }
 });
 
@@ -43,9 +37,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Layout className={classes.layout}>
-        <Header className={classes.header}>
-          <Link to="/"><span className={classes.headerIcon} aria-label="wave" role="img">🦄</span>Choco Shop</Link>
-        </Header>
+        <HeaderApp />
         <Content className={classes.content}>
           <Switch>
             <PrivateRoute path="/orders">

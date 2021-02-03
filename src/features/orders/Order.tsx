@@ -12,6 +12,9 @@ import Price from '../../components/Price';
 import { Title, Text } from '../../components/Typography';
 
 const useStyles = createUseStyles({
+  wrapper: {
+    'maxWidth': 500
+  },
   summery: {
     fontWeight: '800'
   },
@@ -71,7 +74,7 @@ const Order: React.FC = () => {
       <Title level={2}>Order #{order.id}</Title>
       <Text type="secondary"><OrderDate date={order.date} /></Text>
       <div className={classes.products}>Products in your order:</div>
-      <div>
+      <div className={classes.wrapper}>
         <Table<ProductTableItem>
           columns={columns}
           dataSource={data}

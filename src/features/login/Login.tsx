@@ -4,12 +4,20 @@ import {
   useLocation
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { createUseStyles } from 'react-jss';
 import { login, loginSelector } from './loginSlice';
 import Form from '../../components/Form';
 import FormItem from '../../components/FormItem';
 import Input from '../../components/Input';
 import InputPassword from '../../components/InputPassword';
 import Button from '../../components/Button';
+import Alert from '../../components/Alert';
+
+const useStyles = createUseStyles({
+  error: {
+    margin: '3vmin'
+  }
+});
 
 interface LocationState {
   from: {
@@ -18,6 +26,7 @@ interface LocationState {
 }
 
 const Login: React.FC = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   // TODO add loading, error UI
   const { loading, error, token } = useSelector(loginSelector);
@@ -39,37 +48,48 @@ const Login: React.FC = () => {
     console.log('Failed:', errorInfo);
   };
 
+  const errorAlert = error && (
+    <Alert
+      className={classes.error}
+      message="Sorry, something went wrong."
+      type="error"
+    />
+  );
+
   return (
-    <Form
-      name="basic"
-      initialValues={{ remember: true }}
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <FormItem
-        label="Email"
-        name="email"
-        rules={[{ required: true, message: 'Please input your email!' }]}
+    <div>
+      {errorAlert}
+      <Form
+        name="basic"
+        initialValues={{ remember: true }}
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 8 }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
       >
-        <Input aria-label="email-input" />
-      </FormItem>
+        <FormItem
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: 'Please input your email!' }]}
+        >
+          <Input aria-label="email-input" />
+        </FormItem>
 
-      <FormItem
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <InputPassword aria-label="password-input" />
-      </FormItem>
+        <FormItem
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <InputPassword aria-label="password-input" />
+        </FormItem>
 
-      <FormItem wrapperCol={{ span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </FormItem>
-    </Form>
+        <FormItem wrapperCol={{ span: 8, offset: 8 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </FormItem>
+      </Form>
+    </div>
   );
 };
 
