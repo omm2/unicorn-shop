@@ -15,17 +15,19 @@ import Login from './features/login/Login';
 import Products from './features/products/Products';
 import Orders from './features/orders/Orders';
 import Order from './features/orders/Order';
+import jss from './jss';
 
 const useStyles = createUseStyles({
   layout: {
+    background: jss.colors.white,
     display: 'flex',
     minHeight: '100vh',
     margin: 0
   },
   content: {
+    maxWidth: 1200,
     minHeight: '280px',
-    padding: '24px',
-    background: '#fff'
+    padding: '24px'
   },
   footer: {
     marginTop: 'auto'

@@ -14,13 +14,13 @@ import { Title } from '../../components/Typography';
 import jss from '../../jss';
 
 const useStyles = createUseStyles({
-  wrapper: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
   spinWrapper: {
     textAlign: 'center',
     margin: '20px 0'
+  },
+  productsWrapper: {
+    display: 'flex',
+    flexWrap: 'wrap'
   },
   productsHeader: {
     color: jss.colors.blue,
@@ -140,7 +140,7 @@ const Products: React.FC = () => {
         !!data.length &&
         <div>
           {productsHeader}
-          <div className={classes.wrapper}>
+          <div className={classes.productsWrapper}>
             {listProducts}
           </div>
         </div>
