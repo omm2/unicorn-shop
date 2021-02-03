@@ -34,7 +34,7 @@ const Orders: React.FC = () => {
       title: 'Id',
       dataIndex: 'id',
       key: 'id',
-      render: (id: number) => `#${id}`
+      render: (id: number) => <div data-testid='row'>`#${id}`</div>
     },
     {
       title: 'Date',

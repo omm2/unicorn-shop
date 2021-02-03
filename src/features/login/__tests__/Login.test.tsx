@@ -39,10 +39,10 @@ describe('Products', () => {
     const emailInput = screen.getByLabelText('email-input');
     const passwordInput = screen.getByLabelText('password-input');
 
-    fireEvent.change(emailInput, { target: { value: userData.user } })
-    fireEvent.change(passwordInput, { target: { value: userData.password } })
+    fireEvent.change(emailInput, { target: { value: userData.user } });
+    fireEvent.change(passwordInput, { target: { value: userData.password } });
     fireEvent.click(screen.getByText('Submit'));
 
-    await waitFor(() => expect(mockedDispatch).toHaveBeenCalled())
+    await waitFor(() => expect(mockedDispatch).toHaveBeenCalled());
   });
 });

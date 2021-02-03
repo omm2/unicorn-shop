@@ -111,7 +111,7 @@ const Products: React.FC = () => {
   );
   const productsHeader = (
     <div className={classes.productsHeader}>
-      <div className={classes.note}>Items Selected: <span>{selectedIds.length}</span></div>
+      <div className={classes.note}>Items Selected: <span data-testid='counter'>{selectedIds.length}</span></div>
       {(selectedIds.length > 0) &&
         <div className={classes.buttonsWrapper}>
           <Button className={classes.button} onClick={handleDeselectAll}>Deselect All</Button>

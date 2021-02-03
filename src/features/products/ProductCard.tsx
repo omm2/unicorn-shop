@@ -59,6 +59,8 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
       extra={button}
       style={{ width: 250 }}
       role="gridcell"
+      aria-selected={selected}
+      data-testid={selected ? 'selected' : 'unselected'}
     >
       {product.description}
     </Card>
