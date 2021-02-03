@@ -53,7 +53,7 @@ const Login: React.FC = () => {
         name="email"
         rules={[{ required: true, message: 'Please input your email!' }]}
       >
-        <Input />
+        <Input aria-label="email-input" />
       </FormItem>
 
       <FormItem
@@ -61,7 +61,7 @@ const Login: React.FC = () => {
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <InputPassword />
+        <InputPassword aria-label="password-input" />
       </FormItem>
 
       <FormItem wrapperCol={{ span: 16 }}>

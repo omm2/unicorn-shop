@@ -47,6 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
       title={title}
       extra={button}
       style={{ width: 250 }}
+      role="gridcell"
     >
       {product.description}
     </Card>

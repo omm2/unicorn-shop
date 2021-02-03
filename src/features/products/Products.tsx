@@ -10,6 +10,7 @@ import OrderModal from './OrderModal';
 import Button from '../../components/Button';
 import Spin from '../../components/Spin';
 import Alert from '../../components/Alert';
+import { Title } from '../../components/Typography';
 
 const useStyles = createUseStyles({
   wrapper: {
@@ -131,6 +132,7 @@ const Products: React.FC = () => {
 
   return (
     <div>
+      <Title level={2}>Please choose your products</Title>
       {spin}
       {errorAlert}
       {
