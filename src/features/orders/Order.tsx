@@ -36,7 +36,6 @@ interface ProductTableItem {
 interface RouteParams {
   id: string
 }
-
 const columns: ColumnsType<ProductTableItem> = [
   {
     title: 'Name',
@@ -50,7 +49,6 @@ const columns: ColumnsType<ProductTableItem> = [
     render: (price: number) => <Price price={price} />
   }
 ];
-
 const Order: React.FC = () => {
   const classes = useStyles();
   const { id } = useParams<RouteParams>();
@@ -71,7 +69,7 @@ const Order: React.FC = () => {
   return (
     <>
       <Title level={2}>Order #{order.id}</Title>
-      <Text type="secondary"><OrderDate date={order.date} /></Text>
+      <Text type="secondary"><OrderDate date={order.date}/></Text>
       <div className={classes.products}>Products in your order:</div>
       <div className={classes.wrapper}>
         <Table<ProductTableItem>

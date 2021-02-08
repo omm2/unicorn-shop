@@ -56,7 +56,7 @@ const App: React.FC = () => {
             </PrivateRoute>
           </Switch>
         </Content>
-        <Footer className={classes.footer}>Choco Shop ©2021 Created by Ganna Pavlova</Footer>
+        <Footer className={classes.footer}>Unicorn Shop ©2021 Created by Ganna Pavlova</Footer>
       </Layout>
     </Router>
   );

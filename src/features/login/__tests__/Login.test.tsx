@@ -29,8 +29,8 @@ describe('Products', () => {
     (useLocationMock as jest.Mock)
       .mockReturnValueOnce({ from: { pathname: '/' } });
     const userData = {
-      user: 'user@choco.com',
-      password: 'chocorian'
+      user: 'user@unicorn.com',
+      password: 'unicorn'
     };
     render(<Login /> );
     expect(screen.getByText('Email')).toBeInTheDocument();

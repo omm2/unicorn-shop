@@ -1,1 +1,1 @@
-export const baseURL = 'https://glc4swy1fd.execute-api.eu-west-1.amazonaws.com/choco';
+export const baseURL = 'https://unicorn-shop.free.beeceptor.com';

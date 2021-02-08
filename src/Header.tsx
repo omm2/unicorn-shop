@@ -46,7 +46,7 @@ const HeaderApp: React.FC = () => {
   }
   return (
     <Header className={classes.header}>
-      <Link className={classes.home} to="/"><span className={classes.headerIcon} aria-label="wave" role="img">🦄</span>Choco Shop</Link>
+      <Link className={classes.home} to="/"><span className={classes.headerIcon} aria-label="wave" role="img">🦄</span>Unicorn Shop</Link>
       <Menu
         defaultSelectedKeys={[]}
         selectedKeys={ location.pathname === '/orders'? ['1'] : []}
