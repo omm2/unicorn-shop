@@ -132,7 +132,7 @@ const Products: React.FC = () => {
   }
 
   return (
-    <div>
+    <>
       <Title level={2}>Please choose your products</Title>
       {spin}
       {errorAlert}
@@ -145,7 +145,7 @@ const Products: React.FC = () => {
           </div>
         </div>
       }
-    </div>
+    </>
   );
 };
 

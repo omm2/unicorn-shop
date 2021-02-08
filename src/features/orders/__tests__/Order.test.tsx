@@ -4,6 +4,7 @@ import * as reactRedux from 'react-redux';
 import { render } from '../../../test-utils';
 import ordersJson from './orders.json';
 import Order from '../Order';
+import { getTotal } from '../../../utils';
 
 function formatPrice(num: number) {
   const formatted = num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -33,10 +34,7 @@ describe('Order', () => {
       expect(screen.getByText(product.name)).toBeInTheDocument();
     });
 
-    // calculate total
-    const total = orderData.products
-      .map(item => item.price)
-      .reduce((accumulator, value) => accumulator + value);
+    const total = getTotal(orderData.products);
 
     expect(screen.getByText(formatPrice(total))).toBeInTheDocument();
   });

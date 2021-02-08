@@ -57,7 +57,7 @@ const Login: React.FC = () => {
   );
 
   return (
-    <div>
+    <>
       {errorAlert}
       <Form
         name="basic"
@@ -72,7 +72,7 @@ const Login: React.FC = () => {
           name="email"
           rules={[{ required: true, message: 'Please input your email!' }]}
         >
-          <Input aria-label="email-input" />
+          <Input type="email" aria-label="email-input" />
         </FormItem>
 
         <FormItem
@@ -80,7 +80,7 @@ const Login: React.FC = () => {
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <InputPassword aria-label="password-input" />
+          <InputPassword type="password" aria-label="password-input" />
         </FormItem>
 
         <FormItem wrapperCol={{ span: 8, offset: 8 }}>
@@ -89,7 +89,7 @@ const Login: React.FC = () => {
           </Button>
         </FormItem>
       </Form>
-    </div>
+    </>
   );
 };
 

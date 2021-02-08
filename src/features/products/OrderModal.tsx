@@ -6,6 +6,7 @@ import { createUseStyles } from 'react-jss';
 import Modal from '../../components/Modal';
 import { Product } from './productsSlice';
 import Price from '../../components/Price';
+import { getTotal } from '../../utils';
 
 const useStyles = createUseStyles({
   summery: {
@@ -29,9 +30,7 @@ interface ProductTableItem {
 const ProductCard: React.FC<OrderModalProps> = (props: OrderModalProps) => {
   const classes = useStyles();
   const { products, isModalVisible, handleModalOk, handleModalCancel } = props;
-  const total = products
-    .map(item => item.price)
-    .reduce((accumulator, value) => accumulator + value)
+  const total = getTotal(products);
 
   const columns: ColumnsType<ProductTableItem> = [
     {

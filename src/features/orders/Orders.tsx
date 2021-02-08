@@ -58,7 +58,7 @@ const Orders: React.FC = () => {
   }));
 
   return (
-    <div>
+    <>
       <Title level={2}>Your Orders</Title>
       {errorAlert}
       {
@@ -72,7 +72,7 @@ const Orders: React.FC = () => {
           />
         </div>
       }
-    </div>
+    </>
   );
 };
 

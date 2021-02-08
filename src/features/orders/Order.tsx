@@ -10,6 +10,7 @@ import Alert from '../../components/Alert';
 import OrderDate from '../../components/OrderDate';
 import Price from '../../components/Price';
 import { Title, Text } from '../../components/Typography';
+import { getTotal } from '../../utils';
 
 const useStyles = createUseStyles({
   wrapper: {
@@ -45,9 +46,7 @@ const Order: React.FC = () => {
     return <Alert message="Sorry, something went wrong." type="error" />;
   }
 
-  const total = order.products
-    .map(item => item.price)
-    .reduce((accumulator, value) => accumulator + value);
+  const total = getTotal(order.products);
 
   const columns: ColumnsType<ProductTableItem> = [
     {
@@ -70,7 +69,7 @@ const Order: React.FC = () => {
   }));
 
   return (
-    <div>
+    <>
       <Title level={2}>Order #{order.id}</Title>
       <Text type="secondary"><OrderDate date={order.date} /></Text>
       <div className={classes.products}>Products in your order:</div>
@@ -90,7 +89,7 @@ const Order: React.FC = () => {
           );}}
         />
       </div>
-    </div>
+    </>
   );
 };
 

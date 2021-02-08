@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppThunk } from '../../app/store';
+import { baseURL } from '../../constants';
 
 export interface Product {
   description: string;
@@ -49,7 +50,6 @@ export const fetchProducts = (token: string): AppThunk => {
   return async dispatch => {
     dispatch(setLoading(true));
     try {
-      const baseURL: string = 'https://glc4swy1fd.execute-api.eu-west-1.amazonaws.com/choco';
       const res = await axios.get(
         `${baseURL}/products?token=${token}`
       );

@@ -4,7 +4,7 @@ type DateProps = {
   date: number;
 };
 
-const OrderDate: React.FC<DateProps> = (props: DateProps) => {
+const OrderDate: React.VFC<DateProps> = (props: DateProps) => {
   const { date } = props;
   const orderDate = new Date(date);
   const dateStr = orderDate.toLocaleDateString('de-DE');
