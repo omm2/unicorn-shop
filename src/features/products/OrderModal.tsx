@@ -27,24 +27,24 @@ interface ProductTableItem {
   price: number;
 }
 
+const columns: ColumnsType<ProductTableItem> = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name'
+  },
+  {
+    title: 'Price',
+    dataIndex: 'price',
+    key: 'price',
+    render: (price: number) => <Price price={price} />
+  }
+];
+
 const ProductCard: React.FC<OrderModalProps> = (props: OrderModalProps) => {
   const classes = useStyles();
   const { products, isModalVisible, handleModalOk, handleModalCancel } = props;
   const total = getTotal(products);
-
-  const columns: ColumnsType<ProductTableItem> = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name'
-    },
-    {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-      render: (price: number) => <Price price={price} />
-    }
-  ];
 
   const data: ProductTableItem[] = products.map((product) => ({
     key: product.guid,

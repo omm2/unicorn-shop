@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createUseStyles } from 'react-jss';
 import { Redirect } from 'react-router-dom';
@@ -57,22 +57,19 @@ const Products: React.FC = () => {
     dispatch(fetchProducts(token));
   }, [dispatch]);
 
+  const selectedProducts = useMemo(() => data.filter(item => {
+    return selectedIds.includes(item.guid);
+  }), [data, selectedIds]);
 
-  function handleClick(id: string) {
-    let ids;
-    if (selectedIds.includes(id)) {
-      ids = selectedIds.filter(selectedId => selectedId !== id);
-    } else {
-      ids = [...selectedIds, id];
-    }
-    setSelectedIds(ids);
-  }
-
-  function getSelectedProducts() {
-    return data.filter(item => {
-      return selectedIds.includes(item.guid);
-    });
-  }
+  const handleClick = useCallback((id: string) => {
+      let ids;
+      if (selectedIds.includes(id)) {
+        ids = selectedIds.filter(selectedId => selectedId !== id);
+      } else {
+        ids = [...selectedIds, id];
+      }
+      setSelectedIds(ids);
+    }, [selectedIds]);
 
   function handleCreateOrder() {
     setIsModalVisible(true);
@@ -83,7 +80,7 @@ const Products: React.FC = () => {
   }
 
   function handleModalOk() {
-    dispatch(createOrder(getSelectedProducts()));
+    dispatch(createOrder(selectedProducts));
     setSelectedIds([]);
     setOrderCreated(true);
   }
@@ -92,14 +89,18 @@ const Products: React.FC = () => {
     setIsModalVisible(false);
   }
 
-  const listProducts = data.map(product => {
+  const listProducts = useMemo(() => data.map(product => {
     return <ProductCard
       key={product.guid}
       handleClick={handleClick}
       product={product}
       selected={selectedIds.includes(product.guid)}
     />;
-  });
+  }), [data, selectedIds]);
+
+  if (orderCreated) {
+    return <Redirect to='/orders' />;
+  }
 
   const spin = loading && (
     <div className={classes.spinWrapper}>
@@ -117,7 +118,7 @@ const Products: React.FC = () => {
           <Button className={classes.button} onClick={handleDeselectAll}>Deselect All</Button>
           <Button className={classes.button} type="primary" onClick={handleCreateOrder}>Create an order</Button>
           <OrderModal
-            products={getSelectedProducts()}
+            products={selectedProducts}
             isModalVisible={isModalVisible}
             handleModalOk={handleModalOk}
             handleModalCancel={handleModalCancel}
@@ -126,10 +127,6 @@ const Products: React.FC = () => {
       }
     </div>
   );
-
-  if (orderCreated) {
-    return <Redirect to='/orders' />;
-  }
 
   return (
     <>

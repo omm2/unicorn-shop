@@ -21,6 +21,28 @@ interface OrderTableItem {
   date: number;
 }
 
+const columns: ColumnsType<OrderTableItem> = [
+  {
+    title: 'Id',
+    dataIndex: 'id',
+    key: 'id',
+    render: (id: number) => <div data-testid='row'>#{id}</div>
+  },
+  {
+    title: 'Date',
+    dataIndex: 'date',
+    key: 'date',
+    render: (date: number) => <OrderDate date={date} />
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <Link to={`/order/${record.id}`}>Details</Link>
+    )
+  }
+];
+
 const Orders: React.FC = () => {
   const classes = useStyles();
   const { error, data } = useSelector(ordersSelector);
@@ -28,28 +50,6 @@ const Orders: React.FC = () => {
   const errorAlert = error && (
     <Alert message="Sorry, something went wrong." type="error" />
   );
-
-  const columns: ColumnsType<OrderTableItem> = [
-    {
-      title: 'Id',
-      dataIndex: 'id',
-      key: 'id',
-      render: (id: number) => <div data-testid='row'>`#${id}`</div>
-    },
-    {
-      title: 'Date',
-      dataIndex: 'date',
-      key: 'date',
-      render: (date: number) => <OrderDate date={date} />
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <Link to={`/order/${record.id}`}>Details</Link>
-      )
-    }
-  ];
 
   const tableData: OrderTableItem[] = data.map((order)=> ({
     id: order.id,

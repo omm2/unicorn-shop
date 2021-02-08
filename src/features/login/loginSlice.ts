@@ -60,6 +60,12 @@ export const login = (user: UserData): AppThunk => {
   };
 };
 
+export const logout = (): AppThunk => {
+  return async dispatch => {
+    dispatch(setToken(''));
+  };
+};
+
 export default loginSlice.reducer;
 
 export const loginSelector = (state: { login: LoginState }) =>

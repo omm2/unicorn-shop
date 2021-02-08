@@ -37,6 +37,20 @@ interface RouteParams {
   id: string
 }
 
+const columns: ColumnsType<ProductTableItem> = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name'
+  },
+  {
+    title: 'Price',
+    dataIndex: 'price',
+    key: 'price',
+    render: (price: number) => <Price price={price} />
+  }
+];
+
 const Order: React.FC = () => {
   const classes = useStyles();
   const { id } = useParams<RouteParams>();
@@ -47,20 +61,6 @@ const Order: React.FC = () => {
   }
 
   const total = getTotal(order.products);
-
-  const columns: ColumnsType<ProductTableItem> = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name'
-    },
-    {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-      render: (price: number) => <Price price={price} />
-    }
-  ];
 
   const data: ProductTableItem[] = order.products.map((product) => ({
     key: product.guid,
